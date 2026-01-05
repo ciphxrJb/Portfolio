@@ -1,11 +1,57 @@
+# Portfolio Website
 
-  # Portfolio Website
+A personal portfolio website showcasing my projects, skills, and experience as a web developer.  
+Designed and built with a focus on clean UI, performance, responsiveness, and accessibility.
 
-  This is a code bundle for Portfolio Website. The original project is available at https://www.figma.com/design/gd6zhCjxRZLLQTaWzpBXGa/Portfolio-Website.
+🔗 **Live Demo:** https://portfolio-sz3z-429cm8w86-jbs-projects-620730b5.vercel.app/
 
-  ## Running the code
+---
 
-  Run `npm i` to install the dependencies.
+## ✨ Features
 
-  Run `npm run dev` to start the development server.
-  
+- Clean, modern UI with dark theme
+- Responsive layout (mobile → desktop)
+- Animated and interactive project cards
+- Clear project hierarchy and tech stack display
+- Optimized build using Vite
+- Deployed with Vercel
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- shadcn/ui
+- Lucide Icons
+
+### Tooling & Platform
+
+- Git & GitHub
+- Vercel (deployment)
+- npm
+
+---
+
+## 📂 Project Structure
+
+---
+
+## 🚀 Getting Started (Run Locally)
+
+### Prerequisites
+
+- Node.js (v18 or later recommended)
+- npm
+
+### Installation
+
+```bash
+git clone https://github.com/ciphxrb/Portfolio.git
+cd Portfolio
+npm install
+```
