@@ -70,26 +70,12 @@ export function ProfileHeader() {
             </div>
 
             {/* Actions / System Nodes */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', paddingTop: '1rem' }}>
+            <div className="flex flex-wrap gap-4 pt-4">
               <a
                 href="/resume.pdf"
-                style={{ 
-                  display: 'inline-flex', 
-                  alignItems: 'center', 
-                  gap: '0.5rem', 
-                  padding: '0.6rem 1.25rem', 
-                  borderRadius: '4px', 
-                  backgroundColor: 'var(--foreground)', 
-                  color: 'var(--background)', 
-                  fontSize: '0.75rem',
-                  fontWeight: 700, 
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.1em',
-                  transition: 'all 0.3s'
-                }}
-                className="hover:opacity-90"
+                className="btn-schematic btn-schematic-primary group"
               >
-                <FileText className="w-4 h-4" />
+                <FileText className="w-4 h-4 transition-transform group-hover:scale-110" />
                 Resume.PDF
               </a>
 
@@ -102,24 +88,11 @@ export function ProfileHeader() {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ 
-                    display: 'inline-flex', 
-                    alignItems: 'center', 
-                    gap: '0.5rem', 
-                    padding: '0.6rem 1.25rem', 
-                    borderRadius: '4px', 
-                    border: '1px solid rgba(255, 255, 255, 0.08)', 
-                    backgroundColor: 'rgba(255, 255, 255, 0.02)', 
-                    color: 'var(--foreground)',
-                    fontSize: '0.75rem',
-                    fontWeight: 600,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.1em',
-                    transition: 'all 0.3s'
-                  }}
-                  className="hover:bg-white/5 hover:border-white/20"
+                  className="btn-schematic group"
                 >
-                  {link.icon}
+                  <span className="opacity-70 group-hover:opacity-100 transition-opacity">
+                    {link.icon}
+                  </span>
                   {link.name}
                 </a>
               ))}

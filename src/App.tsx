@@ -5,6 +5,7 @@ import { ProfileHeader } from "./components/ProfileHeader";
 import { ProjectsSection2 } from "./components/ProjectsSection2";
 import { MainProfile } from "./components/MainProfile";
 import { ContactModal } from "./components/ContactModal";
+import { LearningJourney } from "./components/LearningJourney";
 import { Footer } from "./components/Footer";
 import { AnimatedBackground } from "./components/AnimatedBackground";
 import { ScrollProgress } from "./components/ScrollProgress";
@@ -15,7 +16,7 @@ export default function App() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "about", "projects"]; // Removed contact from scroll tracking
+      const sections = ["home", "about", "projects", "certifications"]; // Removed contact from scroll tracking
 
       for (const section of sections) {
         const el = document.getElementById(section);
@@ -69,8 +70,14 @@ export default function App() {
         </section>
 
         <section id="projects">
-          <PageTransition delay={0.3}>
+          <PageTransition delay={0.25}>
             <ProjectsSection2 />
+          </PageTransition>
+        </section>
+
+        <section id="certifications">
+          <PageTransition delay={0.3}>
+            <LearningJourney />
           </PageTransition>
         </section>
       </main>

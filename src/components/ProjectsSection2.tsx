@@ -1,4 +1,4 @@
-import { ExternalLink, Github, Rocket } from "lucide-react";
+import { ExternalLink, Github, Monitor, Code2 } from "lucide-react";
 
 const projects = [
   {
@@ -29,7 +29,7 @@ const projects = [
 
 export function ProjectsSection2() {
   return (
-    <section className="relative overflow-hidden" style={{ paddingTop: '3rem', paddingBottom: '6rem' }}>
+    <section className="relative overflow-hidden" style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
       <div className="container mx-auto px-6">
         
         {/* COMPACT HEADER */}
@@ -91,23 +91,17 @@ export function ProjectsSection2() {
                 </div>
 
                 {/* Actions */}
-                <div className="flex items-center gap-3 pt-6 mt-4 border-t border-white/5">
+                <div className="flex items-center gap-4 pt-6 mt-4 border-t border-white/5">
                   {project.live && (
                     <a
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group inline-flex items-center gap-2 px-4 py-2 font-semibold text-xs uppercase tracking-wider transition-all duration-200 hover:gap-3"
-                      style={{
-                        backgroundColor: 'var(--foreground)',
-                        color: 'var(--background)',
-                        borderRadius: '4px',
-                        letterSpacing: '0.1em'
-                      }}
+                      className="btn-schematic btn-schematic-primary group"
                     >
-                      <Rocket className="w-3.5 h-3.5" />
-                      View Live
-                      <ExternalLink className="w-3 h-3 opacity-70 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      <Monitor className="w-3.5 h-3.5 transition-transform group-hover:scale-110" />
+                      <span>View Live</span>
+                      <ExternalLink className="w-3 h-3 opacity-40 group-hover:opacity-100 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </a>
                   )}
                   {project.source && project.source !== '#' && (
@@ -115,16 +109,11 @@ export function ProjectsSection2() {
                       href={project.source}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group inline-flex items-center gap-2 px-4 py-2 font-semibold text-xs uppercase tracking-wider transition-all duration-200 hover:bg-white/10 hover:gap-3"
-                      style={{
-                        border: '1px solid rgba(255,255,255,0.15)',
-                        color: 'var(--foreground)',
-                        borderRadius: '4px',
-                        letterSpacing: '0.1em'
-                      }}
+                      className="btn-schematic group"
                     >
-                      <Github className="w-3.5 h-3.5" />
-                      Source Code
+                      <Code2 className="w-3.5 h-3.5 transition-transform group-hover:rotate-12" />
+                      <span>Source Code</span>
+                      <Github className="w-3 h-3 opacity-40 group-hover:opacity-100 transition-opacity" />
                     </a>
                   )}
                 </div>

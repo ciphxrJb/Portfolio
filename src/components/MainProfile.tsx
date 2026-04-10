@@ -95,7 +95,7 @@ function TechStackBlock() {
     <div className="space-y-1">
       {categories.map((cat, index) => (
         <div key={cat.name} style={{ 
-          paddingBottom: index === categories.length - 1 ? 0 : '1rem',
+          paddingBottom: index === categories.length - 1 ? 0 : '2rem',
           position: 'relative' 
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>

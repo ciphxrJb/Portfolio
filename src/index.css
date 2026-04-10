@@ -11,6 +11,92 @@
   }
 }
 
+/* --- STRUCTURAL SCHEMATIC BUTTON SYSTEM --- */
+.btn-schematic {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.6rem 1.25rem;
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--foreground);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.btn-schematic::before,
+.btn-schematic::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  transition: all 0.3s ease;
+  opacity: 0.5;
+}
+
+/* Top-Left Corner Bracket */
+.btn-schematic::before {
+  top: 0;
+  left: 0;
+  border-top: 1px solid currentColor;
+  border-left: 1px solid currentColor;
+}
+
+/* Bottom-Right Corner Bracket */
+.btn-schematic::after {
+  bottom: 0;
+  right: 0;
+  border-bottom: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+}
+
+.btn-schematic:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.2em;
+  padding-left: 1.5rem;
+  padding-right: 1rem;
+}
+
+.btn-schematic:hover::before {
+  top: 2px;
+  left: 2px;
+  opacity: 1;
+}
+
+.btn-schematic:hover::after {
+  bottom: 2px;
+  right: 2px;
+  opacity: 1;
+}
+
+/* Primary Variant (Highlight) */
+.btn-schematic-primary {
+  background-color: rgba(34, 197, 94, 0.03);
+  border-color: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+}
+
+.btn-schematic-primary:hover {
+  background-color: rgba(34, 197, 94, 0.08);
+  border-color: rgba(34, 197, 94, 0.5);
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.1);
+}
+
+.btn-schematic-primary::before,
+.btn-schematic-primary::after {
+  border-color: #22c55e;
+}
+
+/* --- END BUTTON SYSTEM --- */
+
 @layer properties {
   @supports (((-webkit-hyphens: none)) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color: rgb(from red r g b)))) {
 
