@@ -22,77 +22,48 @@ export function AnimatedBackground() {
   }, []);
 
   return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-      {/* Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/10 dark:from-primary/10 dark:via-background dark:to-secondary/20" />
+    <div className="fixed inset-0 overflow-hidden pointer-events-none" style={{ zIndex: 0 }}>
+      {/* Deep Gradient Background */}
+      <div 
+        className="absolute inset-0" 
+        style={{ 
+          background: `linear-gradient(to bottom right, var(--background, #020617), var(--background, #020617), color-mix(in srgb, var(--secondary, #1e293b) 20%, transparent))` 
+        }} 
+      />
       
       {/* Animated Particles */}
-      {particles.map((particle) => (
+      {particles.slice(0, 20).map((particle) => (
         <div
           key={particle.id}
-          className="absolute rounded-full bg-primary/20 dark:bg-primary/30"
+          className="absolute rounded-full blur-[1px]"
           style={{
             left: `${particle.x}%`,
             top: `${particle.y}%`,
             width: `${particle.size}px`,
             height: `${particle.size}px`,
-            animationDelay: `${particle.delay}s`,
+            backgroundColor: `color-mix(in srgb, var(--foreground, #fff) 30%, transparent)`,
+            animation: `float-particle ${particle.delay + 10}s infinite linear`,
           }}
         />
       ))}
       
-      {/* Floating Geometric Shapes */}
-      <div className="absolute top-20 left-10 w-20 h-20 border border-primary/20 dark:border-primary/40 rounded-lg rotate-45 animate-float" />
-      <div className="absolute top-40 right-20 w-16 h-16 bg-secondary/20 dark:bg-secondary/30 rounded-full animate-float-delayed" />
-      <div className="absolute bottom-40 left-20 w-12 h-12 border-2 border-accent/30 dark:border-accent/40 rotate-12 animate-float-slow" />
-      <div className="absolute bottom-20 right-40 w-24 h-24 border border-muted/30 dark:border-muted/40 rounded-full animate-float" />
-      
-      {/* Mesh Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent dark:via-primary/10 animate-pulse" />
-      
-      <style jsx>{`
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-        
-        .animate-float-delayed {
-          animation: float 8s ease-in-out infinite 2s;
-        }
-        
-        .animate-float-slow {
-          animation: float 10s ease-in-out infinite 1s;
-        }
-        
-        @keyframes float {
-          0%, 100% {
-            transform: translateY(0px) rotate(0deg);
-          }
-          50% {
-            transform: translateY(-20px) rotate(180deg);
-          }
-        }
-        
-        .bg-primary\\/20 {
-          animation: particle-float 15s linear infinite;
-        }
-        
-        @keyframes particle-float {
-          0% {
-            transform: translateY(100vh) translateX(0);
-            opacity: 0;
-          }
-          10% {
-            opacity: 1;
-          }
-          90% {
-            opacity: 1;
-          }
-          100% {
-            transform: translateY(-100px) translateX(100px);
-            opacity: 0;
-          }
-        }
-      `}</style>
+      {/* Ambient Glows - Monochrome version */}
+      <div 
+        className="absolute top-0 left-0 rounded-full blur-[120px] -translate-x-2/3 -translate-y-1/2" 
+        style={{ 
+          width: '600px', 
+          height: '600px', 
+          backgroundColor: `color-mix(in srgb, var(--foreground, #fff) 5%, transparent)` 
+        }} 
+      />
+      <div 
+        className="absolute bottom-0 right-0 rounded-full blur-[120px] translate-x-1/2 translate-y-1/2" 
+        style={{ 
+          width: '600px', 
+          height: '600px', 
+          backgroundColor: `color-mix(in srgb, var(--foreground, #fff) 5%, transparent)` 
+        }} 
+      />
     </div>
   );
 }

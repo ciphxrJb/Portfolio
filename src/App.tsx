@@ -1,23 +1,21 @@
 import { useState, useEffect } from "react";
+import { PageTransition } from "./components/PageTransition";
 import { Header } from "./components/Header";
-import { HeroSection } from "./components/HeroSection";
-import { AboutSection2 } from "./components/AboutSection2";
-import { ProjectsSection } from "./components/ProjectsSection";
 import { ProfileHeader } from "./components/ProfileHeader";
 import { ProjectsSection2 } from "./components/ProjectsSection2";
 import { MainProfile } from "./components/MainProfile";
-import { ContactSection } from "./components/ContactSection";
+import { ContactModal } from "./components/ContactModal";
 import { Footer } from "./components/Footer";
 import { AnimatedBackground } from "./components/AnimatedBackground";
-import { SnapshotGrid } from "./components/SnapshotGrid";
 import { ScrollProgress } from "./components/ScrollProgress";
 
 export default function App() {
   const [activeSection, setActiveSection] = useState("home");
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "about", "projects", "contact"];
+      const sections = ["home", "about", "projects"]; // Removed contact from scroll tracking
 
       for (const section of sections) {
         const el = document.getElementById(section);
@@ -51,44 +49,37 @@ export default function App() {
     <div className="min-h-screen relative">
       <AnimatedBackground />
       <ScrollProgress />
-      <Header activeSection={activeSection} onNavClick={handleNavClick} />
+      <Header 
+        activeSection={activeSection} 
+        onNavClick={handleNavClick} 
+        onContactClick={() => setIsContactModalOpen(true)}
+      />
 
-      <main className="relative z-10">
-        <section id="home">
-          <ProfileHeader />
+      <main className="relative z-10 flex flex-col gap-24 pb-20">
+        <section id="home" style={{ paddingTop: 'max(10vh, 120px)' }}>
+          <PageTransition>
+            <ProfileHeader />
+          </PageTransition>
         </section>
 
         <section id="about">
-          <MainProfile />
+          <PageTransition delay={0.2}>
+            <MainProfile />
+          </PageTransition>
         </section>
 
         <section id="projects">
-          <ProjectsSection2 />
+          <PageTransition delay={0.3}>
+            <ProjectsSection2 />
+          </PageTransition>
         </section>
-
-        <section id="contact">
-          <ContactSection />
-        </section>
-
-        {/* <section id="home">
-          <HeroSection setActiveSection={setActiveSection} />
-        </section>  
-
-        <section id="">
-          <SnapshotGrid />
-        </section>
-
-        <section id="about">
-          <AboutSection />
-        </section>
-
-        <section id="projects">
-          <ProjectsSection />
-        </section>
-
-        > */}
       </main>
 
+      <ContactModal 
+        isOpen={isContactModalOpen} 
+        onClose={() => setIsContactModalOpen(false)} 
+      />
+      
       {/** <Footer /> */}
     </div>
   );

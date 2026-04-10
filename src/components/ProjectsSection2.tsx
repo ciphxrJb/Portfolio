@@ -1,36 +1,27 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
-import { Badge } from "./ui/badge";
-import { Button } from "./ui/button";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, Rocket } from "lucide-react";
 
 const projects = [
   {
     title: "Finance Tracker Web App",
     description:
-      "Personal finance tracker focused on clean state management, secure data handling, and API-driven architecture.",
+      "A high-performance personal finance dashboard focused on real-time state management, secure data handling, and direct API-driven architecture for complex financial analysis.",
     stack: ["React", "Next.js", "TypeScript", "Supabase"],
     status: "Deployed",
-    live: "#",
+    live: "https://balancxe.vercel.app/",
     source: "#",
   },
   {
     title: "Portfolio Website",
     description:
-      "Personal site focused on clean UI, performance, and accessibility.",
-    stack: ["React", "Tailwind", "TypeScript"],
+      "A premium, architectural portfolio designed with a 'Structural Schematic' aesthetic. Focuses on performance, elite accessibility, and high-end visual storytelling.",
+    stack: ["React", "Vite", "TypeScript", "Tailwind"],
     status: "Live",
     live: "#",
   },
   {
-    title: "Login & Registration System",
-    description: "Authentication flow with validation and backend logic.",
-    stack: ["PHP", "HTML", "CSS"],
+    title: "Authentication System",
+    description: "Secure full-stack authentication flow featuring robust input validation, backend session management, and encrypted data storage.",
+    stack: ["PHP", "SQL", "HTML", "CSS"],
     status: "Completed",
     source: "#",
   },
@@ -38,80 +29,107 @@ const projects = [
 
 export function ProjectsSection2() {
   return (
-    <section className="py-20">
-      <div className="container mx-auto px-4 max-w-6xl">
-        <div className="mb-12">
-          <h2 className="text-3xl md:text-4xl mb-3">Selected Projects</h2>
-          <p className="text-muted-foreground max-w-2xl">
-            A focused selection of real-world projects showcasing practical web
-            development and continuous learning.
-          </p>
+    <section className="relative overflow-hidden" style={{ paddingTop: '3rem', paddingBottom: '6rem' }}>
+      <div className="container mx-auto px-6">
+        
+        {/* COMPACT HEADER */}
+        <div style={{ position: 'relative', marginBottom: '3rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <span style={{ fontSize: '0.875rem', fontWeight: 600, color: '#22c55e', letterSpacing: '0.1em' }}>04</span>
+            <h2 className="text-2xl font-bold uppercase tracking-widest text-foreground">Featured Work</h2>
+          </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 auto-rows-fr">
-          {projects.map((project) => (
-            <Card
-              key={project.title}
-              className="group relative flex h-full flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-            >
-              {/* Accent bar */}
-              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary/80 to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+        {/* PROJECTS GRID */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '3rem 10rem', alignItems: 'start' }}>
+          {projects.map((project, index) => (
+            <div key={index} className="group" style={{ position: 'relative', paddingLeft: '2rem', borderLeft: '2px solid rgba(255,255,255,0.1)', transition: 'border-color 0.3s ease' }}>
+              {/* Dynamic Guide Line Focus (on hover) */}
+              <div style={{ position: 'absolute', top: 0, left: '-2px', height: '100%', width: '2px', backgroundColor: '#22c55e', transform: 'scaleY(0)', transition: 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)', transformOrigin: 'top' }} className="group-hover:scale-y-100" />
 
-              <CardHeader className="space-y-3 pb-4">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <CardTitle className="text-xl leading-tight">
-                      {project.title}
-                    </CardTitle>
-                    <CardDescription className="mt-2 max-w-[95%] leading-relaxed text-muted-foreground/90">
-                      {project.description}
-                    </CardDescription>
-                  </div>
-
-                  <Badge
-                    variant="outline"
-                    className="shrink-0 text-xs text-muted-foreground"
-                  >
-                    {project.status}
-                  </Badge>
+              <div className="space-y-6">
+                {/* Meta Header */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                  <div style={{ 
+                    width: '8px', 
+                    height: '8px', 
+                    borderRadius: '9999px', 
+                    backgroundColor: project.status === 'Deployed' || project.status === 'Live' ? '#22c55e' : 'rgba(255,255,255,0.2)',
+                    boxShadow: project.status === 'Deployed' || project.status === 'Live' ? '0 0 10px #22c55e' : 'none'
+                  }} />
+                  <span style={{ fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--muted-foreground)', letterSpacing: '0.2em' }}>
+                    Status: {project.status}
+                  </span>
                 </div>
-              </CardHeader>
 
-              <CardContent className="flex flex-col flex-1">
-                {/* Tech stack */}
-                <div className="flex flex-wrap gap-3 pt-2">
-                  {project.stack.map((tech) => (
-                    <Badge
-                      key={tech}
-                      variant="outline"
-                      className="transition-all duration-200 group-hover:border-primary/60"
-                    >
+                {/* Title & Description */}
+                <div className="space-y-3">
+                  <h3 style={{ fontSize: '1.75rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--foreground)' }}>
+                    {project.title}
+                  </h3>
+                  <p style={{ fontSize: '1rem', lineHeight: 1.7, color: 'var(--muted-foreground)', fontWeight: 300 }}>
+                    {project.description}
+                  </p>
+                </div>
+
+                {/* Technical Stack Pills */}
+                <div className="flex flex-wrap gap-2 pt-2">
+                  {project.stack.map(tech => (
+                    <span key={tech} style={{ 
+                      padding: '0.35rem 0.75rem', 
+                      backgroundColor: 'rgba(255,255,255,0.02)', 
+                      border: '1px solid rgba(255,255,255,0.08)', 
+                      borderRadius: '4px', 
+                      fontSize: '0.7rem', 
+                      fontWeight: 600,
+                      color: 'var(--foreground)',
+                      letterSpacing: '0.05em'
+                    }}>
                       {tech}
-                    </Badge>
+                    </span>
                   ))}
                 </div>
 
                 {/* Actions */}
-                <div className="mt-auto flex flex-wrap items-center gap-3 pt-4">
+                <div className="flex items-center gap-3 pt-6 mt-4 border-t border-white/5">
                   {project.live && (
-                    <Button size="sm" className="gap-2 h-9 px-4">
-                      <ExternalLink className="w-4 h-4" />
-                      Live
-                    </Button>
-                  )}
-                  {project.source && (
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="gap-2 h-9 px-4"
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group inline-flex items-center gap-2 px-4 py-2 font-semibold text-xs uppercase tracking-wider transition-all duration-200 hover:gap-3"
+                      style={{
+                        backgroundColor: 'var(--foreground)',
+                        color: 'var(--background)',
+                        borderRadius: '4px',
+                        letterSpacing: '0.1em'
+                      }}
                     >
-                      <Github className="w-4 h-4" />
-                      Code
-                    </Button>
+                      <Rocket className="w-3.5 h-3.5" />
+                      View Live
+                      <ExternalLink className="w-3 h-3 opacity-70 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </a>
+                  )}
+                  {project.source && project.source !== '#' && (
+                    <a
+                      href={project.source}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group inline-flex items-center gap-2 px-4 py-2 font-semibold text-xs uppercase tracking-wider transition-all duration-200 hover:bg-white/10 hover:gap-3"
+                      style={{
+                        border: '1px solid rgba(255,255,255,0.15)',
+                        color: 'var(--foreground)',
+                        borderRadius: '4px',
+                        letterSpacing: '0.1em'
+                      }}
+                    >
+                      <Github className="w-3.5 h-3.5" />
+                      Source Code
+                    </a>
                   )}
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           ))}
         </div>
       </div>
