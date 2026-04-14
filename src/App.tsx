@@ -4,8 +4,10 @@ import { Header } from "./components/Header";
 import { ProfileHeader } from "./components/ProfileHeader";
 import { ProjectsSection2 } from "./components/ProjectsSection2";
 import { MainProfile } from "./components/MainProfile";
-import { ContactModal } from "./components/ContactModal";
 import { LearningJourney } from "./components/LearningJourney";
+import { ContactSection } from "./components/ContactSection";
+import { ContactModal } from "./components/ContactModal";
+import { CustomCursor } from "./components/CustomCursor";
 import { Footer } from "./components/Footer";
 import { AnimatedBackground } from "./components/AnimatedBackground";
 import { ScrollProgress } from "./components/ScrollProgress";
@@ -16,14 +18,21 @@ export default function App() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "about", "projects", "certifications"]; // Removed contact from scroll tracking
+      const sections = ["home", "about", "projects", "certifications", "contact"];
 
-      for (const section of sections) {
+      // Check if user has scrolled to the absolute bottom
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 20) {
+        setActiveSection("contact");
+        return;
+      }
+
+      // Otherwise find the section currently in the upper half of viewport
+      for (const section of [...sections].reverse()) {
         const el = document.getElementById(section);
         if (!el) continue;
 
         const rect = el.getBoundingClientRect();
-        if (rect.top <= 100 && rect.bottom >= 100) {
+        if (rect.top <= window.innerHeight / 2.5) {
           setActiveSection(section);
           break;
         }
@@ -48,6 +57,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen relative">
+      <CustomCursor />
       <AnimatedBackground />
       <ScrollProgress />
       <Header 
@@ -80,13 +90,16 @@ export default function App() {
             <LearningJourney />
           </PageTransition>
         </section>
-      </main>
 
-      <ContactModal 
-        isOpen={isContactModalOpen} 
-        onClose={() => setIsContactModalOpen(false)} 
-      />
+        <section id="contact">
+          <PageTransition delay={0.35}>
+            <ContactSection onContactClick={() => setIsContactModalOpen(true)} />
+          </PageTransition>
+        </section>
+      </main>
       
+      <ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
+
       {/** <Footer /> */}
     </div>
   );
